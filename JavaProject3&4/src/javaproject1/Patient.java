@@ -188,7 +188,7 @@ public class Patient extends Person {
                         flag = false;
                     }
                 case "adolescent":
-                    System.out.println(v.getBlood_presure());
+                   // System.out.println(v.getBlood_presure());
                     if (v.getBlood_presure() >= 110 && v.getBlood_presure() <= 120) {
                         
                         flag = true;
