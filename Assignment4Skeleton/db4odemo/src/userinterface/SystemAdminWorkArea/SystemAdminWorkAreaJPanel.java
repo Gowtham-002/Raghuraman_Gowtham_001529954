@@ -30,11 +30,26 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
+    CustomerDirectory customerDirectory;
+    RestaurantDirectory restaurantDirectory;
+    DeliveryManDirectory deliveryManDirectory;
+    MenuDirectory menuDirectory;
+    OrderDirectory orderDirectory;
+    
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem ecosystem, CustomerDirectory customerDirectory, RestaurantDirectory restaurantDirectory, DeliveryManDirectory deliveryManDirectory, MenuDirectory menuDirectory, OrderDirectory orderDirectory) {
-        initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.ecosystem=ecosystem;
-        populateTree();
+//        initComponents();
+//        this.userProcessContainer=userProcessContainer;
+//        this.ecosystem=ecosystem;
+//        populateTree();
+
+ initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.customerDirectory = customerDirectory;
+        this.restaurantDirectory = restaurantDirectory;
+        this.deliveryManDirectory = deliveryManDirectory;
+        this.menuDirectory = menuDirectory;
+        this.orderDirectory = orderDirectory;
     }
     
     public void populateTree(){
@@ -156,7 +171,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
-       
+        UpdateCustomerJPanel manageCustomersJPanel = new UpdateCustomerJPanel(userProcessContainer, ecosystem, customerDirectory);
+        userProcessContainer.add("manageCustomersJPanel", manageCustomersJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);       
     }//GEN-LAST:event_btnManageNetworkActionPerformed
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
