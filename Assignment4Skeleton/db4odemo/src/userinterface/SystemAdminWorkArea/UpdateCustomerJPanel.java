@@ -28,6 +28,7 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
     public CustomerDirectory customerDirectory;
     public JPanel container;
     public EcoSystem system;
+    
     public UpdateCustomerJPanel(JPanel userProcessContainer, EcoSystem system, CustomerDirectory customerDirectory) {
          initComponents();
         this.system = system;
@@ -206,9 +207,9 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
                 CardLayout layout = (CardLayout) container.getLayout();
                 Customer customer = customerDirectory.getCustomerId(selectedRow);
                 System.out.println(customer);
-                UpdateCreatedCustomer UpdateCreatedCustomer1 = new UpdateCreatedCustomer(system, container, customer, customerDirectory);
+                UpdateCreatedCustomer1 updatecreatecustomer = new UpdateCreatedCustomer1(system, container, customer, customerDirectory);
                 System.out.println("loop2");
-                container.add(UpdateCreatedCustomer1);
+                container.add(updatecreatecustomer);
                 System.out.println("loop3");
                 layout.next(container);
             }
