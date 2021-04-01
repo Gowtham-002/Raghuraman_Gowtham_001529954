@@ -4,35 +4,43 @@
  */
 package userinterface.DeliveryManRole;
 
+import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
+import Business.Order.Order;
+import Business.Order.OrderDirectory;
 
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author Gowtham
  */
 public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
-    private EcoSystem business;
-    private UserAccount userAccount;
+//    private JPanel userProcessContainer;
+//    private EcoSystem business;
+//    private UserAccount userAccount;
+    
+    private final UserAccount account;
+    private final EcoSystem business;
     
     
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business, DeliveryManDirectory deliveryManDirectory, OrderDirectory orderDirectory) {
         initComponents();
         
-        this.userProcessContainer = userProcessContainer;
-        this.userAccount = account;
+         
+        this.account = account;
         this.business = business;
+        populateTable();
       
         
         populateTable();
@@ -93,7 +101,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 58, 375, 96));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 58, 530, 100));
 
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -123,14 +131,17 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
 
         int selectedRow = workRequestJTable.getSelectedRow();
-        
-        if (selectedRow < 0){
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row!");
             return;
         }
-        
-        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        request.setReceiver(userAccount);
-        request.setStatus("Pending");
+
+        String selectedOrderId = (String) workRequestJTable.getValueAt(selectedRow, 3);
+        Order order = business.getOrderDirectory().fetchOrder(selectedOrderId);
+
+        order.setStatus("Out For Delivery");
+        JOptionPane.showMessageDialog(null, "Order updated successfully!");
         populateTable();
         
     }//GEN-LAST:event_assignJButtonActionPerformed
