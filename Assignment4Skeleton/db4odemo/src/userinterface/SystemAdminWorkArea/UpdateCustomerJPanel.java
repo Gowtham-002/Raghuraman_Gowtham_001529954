@@ -9,6 +9,9 @@ import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -67,10 +70,10 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         Customerlookuptable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnback = new javax.swing.JButton();
+        btnaddcustomer = new javax.swing.JButton();
+        btndeletecustomer = new javax.swing.JButton();
+        btnupdatecustomer = new javax.swing.JButton();
 
         Customerlookuptable.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         Customerlookuptable.setModel(new javax.swing.table.DefaultTableModel(
@@ -98,13 +101,33 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
         jLabel1.setText("    Customer Lookup");
 
-        jButton1.setText("Back");
+        btnback.setText("Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Add Customer");
+        btnaddcustomer.setText("Add Customer");
+        btnaddcustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddcustomerActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Delete Customer");
+        btndeletecustomer.setText("Delete Customer");
+        btndeletecustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeletecustomerActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Update Customer");
+        btnupdatecustomer.setText("Update Customer");
+        btnupdatecustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdatecustomerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -117,19 +140,17 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(80, 80, 80)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnaddcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(102, 102, 102)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(101, 101, 101)
-                                .addComponent(jButton4)))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                                .addComponent(btndeletecustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnupdatecustomer)))))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,24 +158,81 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2))
-                .addContainerGap(174, Short.MAX_VALUE))
+                    .addComponent(btnback)
+                    .addComponent(btndeletecustomer)
+                    .addComponent(btnupdatecustomer)
+                    .addComponent(btnaddcustomer))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnaddcustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddcustomerActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) container.getLayout();
+        AddCustomerPanel createCustomersJPanel = new AddCustomerPanel(container, system, customerDirectory);
+        container.add(createCustomersJPanel);
+        layout.next(container);
+    }//GEN-LAST:event_btnaddcustomerActionPerformed
+
+    private void btndeletecustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeletecustomerActionPerformed
+        // TODO add your handling code here:
+          int selectedRow = Customerlookuptable.getSelectedRow();
+        int count = Customerlookuptable.getSelectedRowCount();
+        if (count == 1) {
+            if (selectedRow >= 0) {
+                int selectionButton = JOptionPane.YES_NO_OPTION;
+                int selectionResult = JOptionPane.showConfirmDialog(null, "Please confirm to delete the customer", "Warning", selectionButton);
+                if (selectionResult == JOptionPane.YES_OPTION) {
+                    customerDirectory.deleteCustomer(selectedRow, system);
+                    populateCustomerList();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a customer row to delete!!");
+        }
+    }//GEN-LAST:event_btndeletecustomerActionPerformed
+
+    private void btnupdatecustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdatecustomerActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = Customerlookuptable.getSelectedRow();
+        int count = Customerlookuptable.getSelectedRowCount();
+        if (count == 1) {
+            if (selectedRow >= 0) {
+                System.out.println("loop");
+                CardLayout layout = (CardLayout) container.getLayout();
+                Customer customer = customerDirectory.getCustomerId(selectedRow);
+                System.out.println(customer);
+                UpdateCreatedCustomer UpdateCreatedCustomer1 = new UpdateCreatedCustomer(system, container, customer, customerDirectory);
+                System.out.println("loop2");
+                container.add(UpdateCreatedCustomer1);
+                System.out.println("loop3");
+                layout.next(container);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a Row!!");
+        }
+    }//GEN-LAST:event_btnupdatecustomerActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+          container.remove(this);
+        Component[] componentArray = container.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_btnbackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Customerlookuptable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnaddcustomer;
+    private javax.swing.JButton btnback;
+    private javax.swing.JButton btndeletecustomer;
+    private javax.swing.JButton btnupdatecustomer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
