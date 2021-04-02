@@ -66,6 +66,8 @@ public class UpdateRestaurantPanel extends javax.swing.JPanel {
         btneditrestaurant = new javax.swing.JButton();
         btnsavechanges = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(102, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("Update Restaurant Details");
@@ -156,7 +158,7 @@ public class UpdateRestaurantPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtrestaurantid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtrestaurantname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,12 +176,12 @@ public class UpdateRestaurantPanel extends javax.swing.JPanel {
                     .addComponent(txtrestaurantemailid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnback)
                     .addComponent(btneditrestaurant)
                     .addComponent(btnsavechanges))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -207,7 +209,7 @@ public class UpdateRestaurantPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please Fill All Fields!");
         } else if (!checkPhoneNumberValidation(txtrestaurantphonenumber.getText())) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Phone No!");
-        } else {
+                    } else {
             restaurant.setRestaurantName(txtrestaurantname.getText());
             restaurant.setStreetAddress(txtrestaurantaddress.getText());
             restaurant.setMobileNo(txtrestaurantphonenumber.getText());

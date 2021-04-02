@@ -115,6 +115,18 @@ public class EcoSystem extends Organization{
         }
         return false;
     }
+    
+     public Boolean checkZipcode(String zipcode)
+    {
+        String regex = "^([0-9]{5})$";
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(zipcode);
+        if (matcher.matches()) {
+            return true;
+        }
+        return false;
+    }
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList=new ArrayList<Role>();

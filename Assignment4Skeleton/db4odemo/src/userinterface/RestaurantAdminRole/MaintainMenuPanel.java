@@ -59,6 +59,8 @@ public class MaintainMenuPanel extends javax.swing.JPanel {
         btnupdateitem = new javax.swing.JButton();
         btndeleteitem = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 255, 255));
+
         tblrestaurantmenulist.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -85,6 +87,11 @@ public class MaintainMenuPanel extends javax.swing.JPanel {
         jLabel1.setText("Restaurant Menu List");
 
         btnback.setText("Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         btnadditem.setText("Add Item");
         btnadditem.addActionListener(new java.awt.event.ActionListener() {
@@ -205,6 +212,15 @@ public class MaintainMenuPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row first!");
         }
     }//GEN-LAST:event_btnupdateitemActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+            container.remove(this);
+        Component[] componentArray = container.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_btnbackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

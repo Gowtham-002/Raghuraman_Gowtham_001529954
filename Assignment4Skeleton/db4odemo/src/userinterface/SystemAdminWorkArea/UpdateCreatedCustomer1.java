@@ -82,6 +82,8 @@ public class UpdateCreatedCustomer1 extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         btneditcustomer = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(102, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("Update Customer ");
@@ -255,6 +257,8 @@ public class UpdateCreatedCustomer1 extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Phone format incorrect!");
         } else if (!system.checkValidEmailFormat(email)) {
             JOptionPane.showMessageDialog(null, "Email format incorrect!");
+        } else if (!system.checkZipcode(zipcode)) {
+            JOptionPane.showMessageDialog(null, "Zipcode format incorrect!");
         } else {
             customerDirectory.updateCustomer(id, name, phone, address, zipcode, email, landmark);
             JOptionPane.showMessageDialog(null, "Customer details updated!");

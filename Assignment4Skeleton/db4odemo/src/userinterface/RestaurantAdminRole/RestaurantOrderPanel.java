@@ -60,6 +60,8 @@ public class RestaurantOrderPanel extends javax.swing.JPanel {
         btnassigndeliveryexe = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(102, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("Restaurant Order List");
@@ -72,7 +74,7 @@ public class RestaurantOrderPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Order No", "Ordered By", "Delivered By", "Order Status", "Restaurant Name", "Delivery Man Msg", "Item Name", "Quantity", "Total Cost"
+                "Order No", "Ordered By", "Delivered By", "Order Status", "Restaurant Name", "Item Name", "Quantity", "Total Cost", "Customer Review"
             }
         ));
         jScrollPane1.setViewportView(tblorderview);
@@ -105,6 +107,11 @@ public class RestaurantOrderPanel extends javax.swing.JPanel {
         });
 
         btnback.setText("Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -117,14 +124,14 @@ public class RestaurantOrderPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnconfirmorder)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 924, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnback)
                                 .addGap(112, 112, 112)
                                 .addComponent(btnassigndeliveryexe))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 918, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -132,9 +139,9 @@ public class RestaurantOrderPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addComponent(btnconfirmorder)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,6 +210,16 @@ public class RestaurantOrderPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnconfirmorderActionPerformed
 
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        
+         userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnbackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnassigndeliveryexe;
@@ -220,17 +237,17 @@ public class RestaurantOrderPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Order order : business.getOrderDirectory().getOrderDirectory()) {
             if (order.getRestaurant().getRestaurantID().equalsIgnoreCase(account.getEmployee().getName())) {
-                Object[] row = new Object[10];
+                Object[] row = new Object[9];
                 row[0] = order.getOrderNo();
                 row[1] = order.getSender();
                 row[2] = (order.getDeliveryMan() == null) ? "Awaiting Confirmation" : order.getDeliveryMan().getName();
-                row[3] = order.getMessage();
-                row[4] = order.getStatus();
-                row[5] = order.getRestaurant().getRestaurantName();
-                row[6] = (order.getOrderConfimation() == null ? "Waiting" : order.getOrderConfimation());
-                row[7] = order.getItem().getItemName();
-                row[8] = order.getQuantity();
-                row[9] = order.getQuantity() * order.getItem().getItemprice();
+                row[3] = order.getStatus();
+                row[4] = order.getRestaurant().getRestaurantName();
+                row[5] = order.getItem().getItemName();
+                row[6] = order.getQuantity();
+                row[7] = order.getQuantity() * order.getItem().getItemprice();
+                row[8] = order.getMessage();
+               
                 
                 model.addRow(row);
             }

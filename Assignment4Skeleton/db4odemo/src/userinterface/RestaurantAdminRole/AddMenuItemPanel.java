@@ -61,6 +61,8 @@ public class AddMenuItemPanel extends javax.swing.JPanel {
         txtitemcuisine = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(102, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("Add New Item");

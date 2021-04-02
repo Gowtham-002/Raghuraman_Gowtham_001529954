@@ -70,6 +70,8 @@ public class AddCustomerPanel extends javax.swing.JPanel {
         btncreatecustomer = new javax.swing.JButton();
         btnbackaction = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("Add Customer");

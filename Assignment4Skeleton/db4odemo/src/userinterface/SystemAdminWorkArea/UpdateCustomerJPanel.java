@@ -76,6 +76,8 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
         btndeletecustomer = new javax.swing.JButton();
         btnupdatecustomer = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(102, 255, 255));
+
         Customerlookuptable.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         Customerlookuptable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

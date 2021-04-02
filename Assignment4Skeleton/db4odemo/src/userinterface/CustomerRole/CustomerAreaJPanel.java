@@ -16,6 +16,7 @@ import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -79,10 +80,12 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         tblrestaurantview = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnorderhistory = new javax.swing.JButton();
         boxquantity = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         btnplaceorder = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(102, 255, 255));
 
         tblrestaurantview.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,7 +102,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -111,20 +114,26 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tblrestaurantview);
-        if (tblrestaurantview.getColumnModel().getColumnCount() > 0) {
-            tblrestaurantview.getColumnModel().getColumn(0).setResizable(false);
-            tblrestaurantview.getColumnModel().getColumn(1).setResizable(false);
-            tblrestaurantview.getColumnModel().getColumn(2).setResizable(false);
-            tblrestaurantview.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("Choose Your Restaurant");
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("View Order History");
+        btnorderhistory.setText("View Order History");
+        btnorderhistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnorderhistoryActionPerformed(evt);
+            }
+        });
+
+        boxquantity.setValue(1);
 
         jLabel2.setText("Quantity");
 
@@ -156,9 +165,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                                 .addGap(89, 89, 89)
                                 .addComponent(btnplaceorder, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))
+                                .addComponent(btnorderhistory))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,10 +176,10 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(btnorderhistory)
                     .addComponent(boxquantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(btnplaceorder))
@@ -191,12 +200,12 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 String status = "Awaiting Order Confirmation";
 
                 Order orderRequest = orderDirectory.add();
-                orderRequest.setOrderNo("Order" + (orderDirectory.getOrderDirectory().size()));
+                orderRequest.setOrderNo("Order_" + (orderDirectory.getOrderDirectory().size()));
                 orderRequest.setItem(item);
                 orderRequest.setRestaurant(restaurant);
                 orderRequest.setCustomer(customer);
                 orderRequest.setQuantity(quantity);                
-                orderRequest.setMessage("Order has been placed");
+                orderRequest.setMessage("Yet to be Reviewed");
                 orderRequest.setSender(userAccount);
                 orderRequest.setStatus(status);
                 system.setOrderDirectory(orderDirectory);
@@ -209,11 +218,29 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnplaceorderActionPerformed
 
+    private void btnorderhistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnorderhistoryActionPerformed
+        // TODO add your handling code here:
+         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        ReviewOrderPanel requestLabTestPanel = new ReviewOrderPanel(userProcessContainer, userAccount, system, customerDirectory, restaurantDirectory, deliveryManDirectory, menuDirectory,orderDirectory);
+        userProcessContainer.add(requestLabTestPanel);
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnorderhistoryActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+         userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner boxquantity;
+    private javax.swing.JButton btnorderhistory;
     private javax.swing.JButton btnplaceorder;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
