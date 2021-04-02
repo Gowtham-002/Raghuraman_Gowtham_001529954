@@ -182,6 +182,19 @@ public class ManageRestaurantPanel extends javax.swing.JPanel {
 
     private void btnupdaterestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdaterestaurantActionPerformed
         // TODO add your handling code here:
+         int selectedRow = tblrestaurantview.getSelectedRow();
+        int count = tblrestaurantview.getSelectedRowCount();
+        if (count == 1) {
+            if (selectedRow >= 0) {
+                CardLayout layout = (CardLayout) container.getLayout();
+                Restaurant restaurant = restaurantDirectory.getRestaurantNo(selectedRow);
+                UpdateRestaurantPanel UpdateRestaurantsJPanel = new UpdateRestaurantPanel(container, restaurant);
+                container.add(UpdateRestaurantsJPanel);
+                layout.next(container);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a Restaurant to update");
+        }
     }//GEN-LAST:event_btnupdaterestaurantActionPerformed
 
     private void btndeleterestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleterestaurantActionPerformed

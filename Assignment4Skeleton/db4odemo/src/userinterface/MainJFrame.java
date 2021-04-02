@@ -16,6 +16,9 @@ import Business.Menu.*;
 import Business.Restaurant.RestaurantDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -37,7 +40,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private final MenuDirectory menuDirectory;
     private final OrderDirectory orderDirectory;
 
-    public MainJFrame() {
+    public MainJFrame() throws IOException {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         if(system.getMenuDirectory() == null)
@@ -101,7 +104,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(300, 450));
+        jPanel1.setPreferredSize(new java.awt.Dimension(200, 450));
 
         btnlogin.setText("Login");
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +160,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnlogout)
                 .addGap(22, 22, 22)
                 .addComponent(loginJLabel)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -240,7 +243,16 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrame().setVisible(true);
+                try {
+                    MainJFrame frame = new MainJFrame();
+                    frame.dispose();
+                    frame.setSize(1200, 650);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+
+                } catch (IOException ex) {
+                    Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

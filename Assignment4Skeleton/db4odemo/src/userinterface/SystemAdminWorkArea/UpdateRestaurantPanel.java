@@ -185,6 +185,8 @@ public class UpdateRestaurantPanel extends javax.swing.JPanel {
 
     private void btneditrestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditrestaurantActionPerformed
         // TODO add your handling code here:
+        
+    enableRestaurantEditing();
     }//GEN-LAST:event_btneditrestaurantActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
@@ -255,5 +257,14 @@ public class UpdateRestaurantPanel extends javax.swing.JPanel {
         txtrestaurantzipcode.setEditable(false);
         txtrestaurantemailid.setEditable(false);
     } //To change body of generated methods, choose Tools | Templates.
+
+    public void enableRestaurantEditing() {
+         txtrestaurantid.setEditable(true);
+        txtrestaurantphonenumber.setEditable(true);
+        txtrestaurantname.setEditable(true);
+        txtrestaurantaddress.setEditable(true);
+        txtrestaurantzipcode.setEditable(true);
+        txtrestaurantemailid.setEditable(true); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
