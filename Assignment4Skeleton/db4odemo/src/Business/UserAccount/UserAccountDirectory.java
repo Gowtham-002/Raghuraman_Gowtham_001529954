@@ -42,10 +42,32 @@ public class UserAccountDirectory {
         return userAccount;
     }
     
-    public boolean checkIfUsernameIsUnique(String username){
-        for (UserAccount ua : userAccountList){
-            if (ua.getUsername().equals(username))
+    public UserAccount getUserByEmployeeNo(String employeeNo) {
+        for (UserAccount user : userAccountList) {
+            if (user.getEmployee().getName().equalsIgnoreCase(employeeNo)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public void removeAllAccounts() {
+        for (int i = 0; i < userAccountList.size(); i++) {
+            if (!userAccountList.get(i).getUsername().equalsIgnoreCase("admin")) {
+                userAccountList.remove(i);
+            }
+        }
+
+        for (int i = 0; i < userAccountList.size(); i++) {
+            System.out.println(userAccountList.get(i).getEmployee());
+        }
+    }
+
+    public boolean checkIfUsernameIsUnique(String username) {
+        for (UserAccount ua : userAccountList) {
+            if (ua.getUsername().equals(username)) {
                 return false;
+            }
         }
         return true;
     }
